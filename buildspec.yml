@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+      nodejs: 10
+  build:
+    commands:
+      - docker build -t 2donny/beanstalk-fullstack-nginx -f ./nginx
+      - docker build -t 2donny/beanstalk-fullstack-backend -f ./backend
+      - docker build -t 2donny/beanstalk-fullstack-frontend -f ./frontend
+
+      - docker push 2donny/beanstalk-fullstack-nginx
+      - docker push 2donny/beanstalk-fullstack-backend
+      - docker push 2donny/beanstalk-fullstack-frontend
+
+artifacts:
+  files: imagedefinitions.json
