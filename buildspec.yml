@@ -7,6 +7,8 @@ phases:
       nodejs: 10
   build:
     commands:
+      - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+      
       - docker build -t 2donny/beanstalk-fullstack-nginx ./nginx
       - docker build -t 2donny/beanstalk-fullstack-backend ./backend
       - docker build -t 2donny/beanstalk-fullstack-frontend ./frontend
